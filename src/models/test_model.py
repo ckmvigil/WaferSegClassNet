@@ -19,10 +19,11 @@ import logging
 import os
 
 def main():
-    """ testing given image. 
+    """ testing performance of model. 
     """
     (trainGenContrastive, testGenContrastive), (trainGen, testGen) = getDataLoader(batch_size=1)
-    model = tf.keras.models.load_model(os.path.join(WEIGHTS_DIR, 'last.h5'), custom_objects={"diceCoef":diceCoef, "bce_dice_loss":bceDiceLoss})
+    model = tf.keras.models.load_model(os.path.join(WEIGHTS_DIR, 'WaferSegClassNet_Best.h5'), custom_objects={"diceCoef":diceCoef, "bceDiceLoss":bceDiceLoss})
+    model.evaluate(testGen)
     y_true_seg, y_pred_seg, y_true_cls, y_pred_cls = [], [], [], []
     with tqdm(total = int(38015*TEST_SIZE)) as pbar:
         for data in testGen:
@@ -30,19 +31,14 @@ def main():
             seg, cls = model.predict(img)
             y_true_seg.append(mask[0][:, :, 0] > 0.5)
             y_pred_seg.append(seg[0][:, :, 0] > 0.5)
-            y_true_cls.append(CLASS_NAME_MAPPING[np.argmax(label[0], axis=-1)])
-            y_pred_cls.append(CLASS_NAME_MAPPING[np.argmax(cls[0], axis=-1)])
+            y_true_cls.append(label[0])
+            y_pred_cls.append(cls[0])
             pbar.update(1)
 
     y_true_seg = np.array(y_true_seg)
     y_pred_seg = np.array(y_pred_seg)
     y_true_cls = np.array(y_true_cls)
     y_pred_cls = np.array(y_pred_cls)
-
-    np.save("y_true_seg.npy", y_true_seg)
-    np.save("y_pred_seg.npy", y_pred_seg)
-    np.save("y_true_cls.npy", y_true_cls)
-    np.save("y_pred_cls.npy", y_pred_cls)
 
     IOU_Score = []
 
@@ -54,18 +50,15 @@ def main():
     logging.info("[Info] IOU_Score: ")
     logging.info(sum(IOU_Score) / len(IOU_Score))
 
-    logging.info("[Info] DICE_Score: ")
-    logging.info(diceCoef(y_true_seg, y_pred_seg))
-
     logging.info("[Info] Classification_report: ")
-    logging.info(classification_report(y_true_cls, y_pred_cls))
+    logging.info(classification_report(np.argmax(y_true_cls, axis=-1), np.argmax(y_pred_cls, axis=-1)))
 
     logging.info("[Info] ROC_AUC Curve: ")
     fpr, tpr, thresholds = roc_curve(y_true_cls.ravel(), y_pred_cls.ravel())
-    auc = auc(fpr, tpr)
+    auc_score = auc(fpr, tpr)
 
     fig, ax = plt.subplots(1,1)
-    ax.plot(fpr, tpr, label='ROC curve WSCN (area = %0.4f)' % auc)
+    ax.plot(fpr, tpr, label='ROC curve WSCN (area = %0.4f)' % auc_score)
     ax.plot([0, 1], [0, 1], 'k--')
     ax.set_xlim([0.0, 1.0])
     ax.set_ylim([0.0, 1.05])
@@ -77,9 +70,9 @@ def main():
     plt.savefig(os.path.join(INFERENCE_DIR, "ROC_Curve_WSCN.pdf"))
 
 if __name__ == '__main__':
-    # logging.basicConfig(level = logging.INFO, filename = os.path.join(LOG_DIR, 'app.log'), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filemode='w')
+    logging.basicConfig(level = logging.INFO, filename = os.path.join(LOG_DIR, 'app.log'), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filemode='w')
 
-    # sys.stdout = LoggerWriter(logging.info)
-    # sys.stderr = LoggerWriter(logging.error)
+    sys.stdout = LoggerWriter(logging.info)
+    sys.stderr = LoggerWriter(logging.error)
 
     main()
