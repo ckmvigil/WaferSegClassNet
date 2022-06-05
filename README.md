@@ -3,6 +3,11 @@ WaferSegClassNet - A Light-weight Network for Classification and Segmentation of
 
 This repository contains the source code of our paper, WaferSegClassNet (accepted for publication in <a href="https://www.sciencedirect.com/journal/computers-in-industry">Computers in Industry</a>).
 
+## Sample Results
+<hr>
+
+Check our project page for more qualitative results.
+
 Project Organization
 ------------
 
