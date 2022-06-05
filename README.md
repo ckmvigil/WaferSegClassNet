@@ -105,3 +105,8 @@ To test wscn with trained model, Run following command from ```/src``` directory
 ```python models/test_model.py ``` 
 
 Above command will generate IOU Score, and DICE Score for segmentation output, and classification report and ROC AUC Curve for classification output.
+
+## License
+<hr>
+MIT License
+
