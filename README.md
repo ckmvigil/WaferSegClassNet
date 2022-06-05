@@ -106,6 +106,10 @@ To test wscn with trained model, Run following command from ```/src``` directory
 
 Above command will generate IOU Score, and DICE Score for segmentation output, and classification report and ROC AUC Curve for classification output.
 
+## Citation
+
+Yet to be updated
+
 ## License
 <hr>
 MIT License
