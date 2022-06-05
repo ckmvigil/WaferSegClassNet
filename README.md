@@ -1,7 +1,7 @@
 WaferSegClassNet - A Light-weight Network for Classification and Segmentation of Semiconductor Wafer Defects
 ==============================
 
-This repository contains the source code of our paper, WaferSegClassNet (accepted for publication in Computers in Industry).
+This repository contains the source code of our paper, WaferSegClassNet (accepted for publication in <a href="https://www.sciencedirect.com/journal/computers-in-industry">Computers in Industry</a>).
 
 Project Organization
 ------------
@@ -13,22 +13,24 @@ Project Organization
     │   └── raw            <- The original, immutable data dump.
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
+    ├── requirements.txt   <- The requirements file for reproducing the analysis environment.
     │
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
+    │   ├── config.py      <- All configuration params
+    |   ├── util.py        <- All utilities functions
     │   │
-    │   ├── data           <- Scripts to download or generate data
+    │   ├── data           <- Script to generate data in required format
     │   │   └── make_dataset.py
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
+    │   │   │                 predictions and test performance.
     │   │   ├── predict_model.py
     │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-            └── visualize.py
-
-
+    |   |   └── test_model.py
+    |   |   └── network.py
+    |   |   └── loss.py
+    ├── inference          <- Inference directory, where predicted masks are stored.
+    ├── logs               <- Logs directory for saving terminal output.
+    ├── weights            <- Weights directory for saving checkpoints.
 --------
