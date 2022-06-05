@@ -6,7 +6,9 @@ This repository contains the source code of our paper, WaferSegClassNet (accepte
 ## Sample Results
 <hr>
 
-Check our project page for more qualitative results.
+Check our <a href="check.com">project</a> page for more qualitative results.
+
+<img src="reports/figures/Qualitative.png">
 
 Project Organization
 ------------
