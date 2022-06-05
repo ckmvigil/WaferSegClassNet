@@ -46,3 +46,28 @@ Project Organization
     ├── logs               <- Logs directory for saving terminal output.
     ├── weights            <- Weights directory for saving checkpoints.
 --------
+
+## Get Started
+<hr>
+Dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+## (Optional) Conda Environment Configuration
+
+First, create a conda environment
+```bash
+conda create -n wscn # python=3
+source activate wscn
+```
+
+Now, add dependencies
+
+Now, you can install the required packages.
+```bash
+pip install -r requirements.txt
+```
+
+## Dataset
