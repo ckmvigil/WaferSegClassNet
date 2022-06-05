@@ -3,6 +3,10 @@ WaferSegClassNet - A Light-weight Network for Classification and Segmentation of
 
 This repository contains the source code of our paper, WaferSegClassNet (accepted for publication in <a href="https://www.sciencedirect.com/journal/computers-in-industry">Computers in Industry</a>).
 
+we propose WaferSegClassNet (WSCN), a deep-learning model for simultaneously performing both classification and segmentation of defects on Wafer Maps. To the best of our knowledge, WSCN is the first wafer defect analysis model that performs both segmentation and classification. WSCN follows a multi-task learning framework to segment and classify an image simultaneously. 
+
+<img src="reports/figures/wafermodelarchitecture_v2.pdf">
+
 ## Sample Results
 <hr>
 
