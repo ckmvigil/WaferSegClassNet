@@ -13,7 +13,7 @@ we propose WaferSegClassNet (WSCN), a deep-learning model for simultaneously per
 
 Check our <a href="check.com">project</a> page for more qualitative results.
 
-<img src="reports/figures/Qualitative.png">
+<p align="center"><img src="reports/figures/Qualitative.png" width="840"></p>
 
 Project Organization
 ------------
