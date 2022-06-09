@@ -107,10 +107,14 @@ To test wscn with trained model, Run following command from ```/src``` directory
 Above command will generate IOU Score, and DICE Score for segmentation output, and classification report and ROC AUC Curve for classification output.
 
 ## Citation
-
-Yet to be updated
-
+```
+@article {ref162,
+	title = "WaferSegClassNet - A Light-weight Network for Classification and Segmentation of Semiconductor Wafer Defects",
+	year = "2022",
+	author = "Subhrajit Nag and Dhruv Makwana and R Sai Chandra Teja and Sparsh Mittal and C Krishna Mohan",
+	journal = "Computers in industry",
+}
+```
 ## License
 <hr>
-MIT License
-
+CC BY-NC-ND 4.0
