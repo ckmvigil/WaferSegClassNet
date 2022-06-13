@@ -88,6 +88,8 @@ To train wscn, Run following command from ```/src``` directory.
 
 ```python models/train_model.py``` 
 
+All the trained checkpoints for pre-training as well as full model training will be saved in ```/weights.```
+
 Above command will first pre-train encoder with N-Pair contrastive loss and then finetune segmentation and classification for given number of epochs.
 
 ### Prediction
@@ -104,7 +106,7 @@ To test wscn with trained model, Run following command from ```/src``` directory
 
 ```python models/test_model.py ``` 
 
-Above command will generate IOU Score, and DICE Score for segmentation output, and classification report and ROC AUC Curve for classification output.
+Above command will generate IOU Score, and DICE Score for segmentation output, and classification report, Matthews Correlation Coefficient (MCC) and ROC AUC Curve for classification output. ROC-AUC Curve will be saved in ```inference/``` directory.
 
 ## Citation
 ```
