@@ -4,6 +4,7 @@ sys.path.append("../src")
 sys.path.append("../src/data/")
 
 from sklearn.metrics import classification_report
+from sklearn.metrics import matthews_corrcoef
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, auc
 import matplotlib.pyplot as plt
@@ -52,7 +53,10 @@ def main():
 
     logging.info("[Info] Classification_report: ")
     logging.info(classification_report(np.argmax(y_true_cls, axis=-1), np.argmax(y_pred_cls, axis=-1)))
-
+    
+    logging.info("[Info] Matthews Correlation Coefficient (MCC): ")
+    logging.info(matthews_corrcoef(y_true_cls.ravel(), y_pred_cls.ravel()))
+    
     logging.info("[Info] ROC_AUC Curve: ")
     fpr, tpr, thresholds = roc_curve(y_true_cls.ravel(), y_pred_cls.ravel())
     auc_score = auc(fpr, tpr)
