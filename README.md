@@ -23,7 +23,6 @@ Project Organization
     ├── data
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment.
     │
