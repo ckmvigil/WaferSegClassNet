@@ -7,6 +7,7 @@ from config import *
 from utils import *
 import numpy as np
 import logging
+import cv2
 import os
 
 def main():
@@ -26,10 +27,22 @@ def main():
     data = np.load(INPUT_FILE)
 
     for i in tqdm(range(len(data["arr_0"]))):
-        np.save(os.path.join(IMAGES_DIR, f"Image_{i}.npy"), data["arr_0"][i])
+        inp_image = data["arr_0"][i].astype(np.uint8)
+        inp_image = cv2.resize(inp_image, IMAGE_SIZE, interpolation = cv2.INTER_AREA)
+
+        rgb_image = np.zeros(IMAGE_SIZE + (3, ), dtype=np.uint8)
+        rgb_mask = np.zeros(IMAGE_SIZE + (1, ), dtype=np.uint8)
+
+        image_colors = np.array([[255, 0, 255], [0, 255, 255], [255, 255, 0]])
+        mask_colors = np.array([[0], [0], [255]])
+
+        rgb_image = image_colors[inp_image]
+        rgb_mask = mask_colors[inp_image]
+        
+        # Display the RGB image
+        np.save(os.path.join(IMAGES_DIR, f"Image_{i}.npy"), rgb_image)
         np.save(os.path.join(LABELS_DIR, f"Image_{i}.npy"), data["arr_1"][i])
-        mask = createMask(data["arr_0"][i])
-        np.save(os.path.join(MASKS_DIR, f"Image_{i}.npy"), mask)
+        np.save(os.path.join(MASKS_DIR, f"Image_{i}.npy"), rgb_mask)
     logger.info('[Info] Dataset Created Sucessfully')
 
 if __name__ == '__main__':
